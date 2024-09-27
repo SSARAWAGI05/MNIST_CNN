@@ -1,98 +1,48 @@
-## Table of Contents
-1. [About The Project](#about-the-project)
-2. [Built With](#built-with)
-3. [Getting Started](#getting-started)
-4. [Installation](#installation)
-5. [Dependencies](#dependencies)
-6. [Problem Statement](#problem-statement)
-7. [Key Features](#key-features)
-8. [Contributing](#contributing)
-9. [License](#license)
-10. [Authors](#authors)
-11. [Acknowledgements](#acknowledgements)
+## Description of the Code
+
+This project implements a Convolutional Neural Network (CNN) for digit recognition using the MNIST dataset. The code is structured to facilitate data loading, preprocessing, model creation, training, and evaluation.
+
+### Data Loading
+
+The MNIST dataset is loaded using Keras, which splits the data into training and testing sets. The training set consists of 60,000 images, while the testing set contains 10,000 images. Each image is a 28x28 pixel grayscale image representing a handwritten digit.
+
+### Data Visualization
+
+The first image from the training set is displayed using Matplotlib to provide a visual understanding of the data being processed.
+
+### Data Preprocessing
+
+The training and testing images are reshaped to include a channel dimension, converting the data from a shape of (60000, 28, 28) to (60000, 28, 28, 1). This format is necessary for the CNN to correctly interpret the input.
+
+The pixel values of the images, which originally range from 0 to 255, are normalized to a range of 0 to 1 by dividing by 255. This normalization helps the model train more effectively.
+
+### Data Augmentation
+
+To improve the model's generalization capabilities, a sequential data augmentation layer is applied. This layer includes random transformations such as rotation, zoom, and translation, which create variations of the training images and help prevent overfitting.
+
+### Model Architecture
+
+A sequential CNN is constructed, which includes the following layers:
+
+1. **Input Layer**: Specifies the input shape of the images.
+2. **Data Augmentation Layer**: Applies the random transformations to the input images.
+3. **Convolutional Layers**: Three convolutional layers with ReLU activation functions for feature extraction.
+4. **Max Pooling Layers**: Two max pooling layers to downsample the feature maps.
+5. **Flatten Layer**: Converts the 3D output of the convolutional layers into a 1D vector.
+6. **Dense Layer**: A fully connected layer with ReLU activation for further processing.
+7. **Dropout Layer**: A dropout layer to reduce overfitting by randomly setting a fraction of the input units to zero during training.
+8. **Output Layer**: A dense layer with softmax activation to produce class probabilities for the digits 0-9.
+
+### Model Compilation
+
+The model is compiled with the Adam optimizer and sparse categorical crossentropy loss function. Accuracy is set as a metric to evaluate the model's performance during training and validation.
+
+### Model Training
+
+The model is trained using the preprocessed training data for 15 epochs, with a batch size of 128. A validation split of 20% of the training data is used to monitor the model's performance on unseen data during training.
+
+### Model Evaluation
+
+After training, the model is evaluated using the test dataset. The evaluation returns the test loss and test accuracy, allowing an assessment of how well the model generalizes to new, unseen data.
 
 ---
-
-## About The Project
-This project is a deep learning-based real-time digit recognition system using a Convolutional Neural Network (CNN) trained on the MNIST dataset. It integrates live video capture to recognize and classify handwritten digits displayed to the camera. The model is trained to detect digits (0-9) and provides predictions based on the frames captured in real-time, making it a practical application of machine learning in real-world scenarios.
-
----
-
-## Built With
-- **TensorFlow**: For building and training the deep learning model.
-- **Keras**: For the high-level neural network API used to create the CNN.
-- **OpenCV**: For video capture and real-time processing.
-- **NumPy**: For efficient data handling and manipulation.
-- **Matplotlib**: For plotting graphs (if required for future work).
-
----
-
-## Getting Started
-To get started with this project, you'll need to install the required dependencies, train the model, and run the real-time digit recognition script. This guide will walk you through the necessary steps to set up and deploy the project.
-
----
-
-## Installation
-1. Clone the repository to your local machine.
-   ```bash
-   git clone https://github.com/your_username/real-time-digit-recognition.git
-   ```
-2. Navigate to the project directory.
-   ```bash
-   cd real-time-digit-recognition
-   ```
-3. Install the required dependencies (listed below).
-
----
-
-## Dependencies
-- TensorFlow
-- Keras
-- OpenCV
-- NumPy
-- Matplotlib (optional for visualization)
-   
-You can install the dependencies using pip:
-```bash
-pip install tensorflow opencv-python numpy matplotlib
-```
-
----
-
-## Problem Statement
-The goal of this project is to develop a system capable of recognizing handwritten digits in real-time using a live camera feed. Traditional digit recognition models are trained on static images, but this project extends the concept by applying it to dynamic, real-world data, allowing users to interactively test the model by drawing digits in front of a camera.
-
----
-
-## Key Features
-1. **Convolutional Neural Network (CNN)**: The project implements a CNN for feature extraction and classification of the MNIST dataset digits.
-2. **Data Augmentation**: Includes random transformations like rotation, zoom, and translation to improve model generalization.
-3. **Real-time Digit Classification**: Uses OpenCV to capture video frames, preprocess them, and classify digits in real-time.
-4. **Confidence Threshold**: Displays prediction results only if the model is confident (above 70% certainty) to improve prediction reliability.
-5. **User-Friendly Display**: The camera feed shows the recognized digit and the model’s confidence on the screen for easy interpretation.
-
----
-
-## Contributing
-Contributions are welcome! Feel free to open a pull request or issue if you have suggestions or improvements. Ensure that your changes adhere to the coding standards and project guidelines.
-
----
-
-## License
-Distributed under the MIT License. See `LICENSE` for more information.
-
----
-
-## Authors
-- Shubam Sarawagi
-
----
-
-## Acknowledgements
-- **TensorFlow** and **Keras** for providing powerful tools for deep learning.
-- **OpenCV** for simplifying real-time video capture and processing.
-- The open-source community for contributions that make projects like this possible.
-
----
-
-You can modify and adjust the structure as needed for your GitHub README file.
